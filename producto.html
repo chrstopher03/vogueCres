@@ -23,22 +23,8 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 .menu a:hover { color: #555; }
 
 /* Contenedor producto escritorio */
-.producto-detalle {
-  display: flex;
-  max-width: 1200px;
-  margin: 2rem auto;
-  gap: 2rem;
-  align-items: center;
-  padding: 0 1rem;
-}
-
-.info-izquierda, .info-derecha {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
+.producto-detalle { display: flex; max-width: 1200px; margin: 2rem auto; gap: 2rem; align-items: center; padding: 0 1rem; }
+.info-izquierda, .info-derecha { display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; }
 .info-izquierda { flex: 1 1 30%; }
 .imagen-centro { flex: 1 1 40%; display: flex; flex-direction: column; align-items: center; position: relative; }
 .info-derecha { flex: 1 1 30%; }
@@ -48,48 +34,49 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 .precio { font-weight: 700; font-size: 1.1rem; }
 .colores, .tallas { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
 .color, .talla { cursor: pointer; border: 1px solid #ccc; border-radius: 5px; padding: 0.5rem 0.7rem; }
-.color.selected, .talla.selected { border: 2px solid #111; }
+.color.selected, .talla.selected { border: 2px solid #111; font-weight: 700; }
 
-/* Galería de imágenes */
-.galeria {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-.galeria img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
-  object-fit: cover;
-}
+.galeria { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+.galeria img { width: 100%; max-width: 400px; border-radius: 10px; object-fit: cover; }
 
 .btn-carrito { padding: 0.6rem 1rem; background: #111; color: #fff; border: none; cursor: pointer; border-radius: 5px; width: fit-content; font-size: 0.9rem; transition: background 0.2s; }
 .btn-carrito:hover { background: #333; }
 
-/* Productos relacionados */
 .productos-relacionados { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
 .productos-relacionados h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 1.1rem; }
 .productos-relacionados .relacionado { display: inline-block; margin-right: 1rem; text-align: center; cursor: pointer; margin-bottom: 1rem; font-size: 0.9rem; }
 .productos-relacionados img { width: 120px; border-radius: 10px; }
+#relacionados-container {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
 
-/* Ocultar datos flotantes en escritorio */
+#relacionados {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.productos-relacionados .relacionado {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.productos-relacionados .relacionado img {
+  width: 120px;
+  border-radius: 10px;
+}
+
+/* Datos flotantes móvil */
 .datos-flotantes { display: none; }
-/* Responsive móvil */
 @media (max-width: 768px) {
-  .producto-detalle { 
-    flex-direction: column; 
-    align-items: center; 
-  }
-  .info-izquierda, .info-derecha { 
-    display: none; 
-  }
-  .imagen-centro { 
-    width: 100%; 
-    max-width: 400px; 
-    position: relative; 
-  }
-
+  .producto-detalle { flex-direction: column; align-items: center; }
+  .info-izquierda, .info-derecha { display: none; }
+  .imagen-centro { width: 100%; max-width: 400px; position: relative; }
   .datos-flotantes {
     display: flex;
     position: absolute;
@@ -102,38 +89,50 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
     font-size: 0.8rem;
     width: 25%;
   }
-
-  /* Ajustes para tallas y botón */
-  .tallas { 
-    width: 100%; 
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  .talla { 
-    flex: 1; 
-    text-align: center; 
-    padding: 0.8rem; 
-    font-size: 1rem; 
-    border: none;          /* 👈 Sin bordes */
-    background: transparent; /* 👈 Fondo limpio */
-  }
-  .talla.selected {
-    font-weight: 700;       /* 👈 Solo resalta con negrita */
-    text-decoration: underline; /* 👈 O subrayado opcional */
-  }
-
-  .btn-carrito { 
-    width: 100%; 
-    margin-top: 1rem; 
-    padding: 1rem; 
-    font-size: 1rem; 
-    border-radius: 8px; 
-  }
+  .tallas { width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .talla { flex: 1; text-align: center; padding: 0.8rem; font-size: 1rem; border: none; background: transparent; }
+  .talla.selected { font-weight: 700; text-decoration: underline; }
+  .btn-carrito { width: 100%; margin-top: 1rem; padding: 1rem; font-size: 1rem; border-radius: 8px; }
 }
 
+/* Estilo input cantidad en escritorio */
+#cantidad {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  width: 60px;
+  padding: 0.3rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Pantalla completa de imagen */
+#fullscreen-img {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:black;
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+#fullscreen-img img {
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+#close-fullscreen {
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:2rem;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -157,27 +156,20 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   </div>
 
   <div class="imagen-centro">
-    <!-- Galería de imágenes -->
     <div class="galeria" id="galeria"></div>
-
-    <!-- Datos flotantes móvil -->
     <div class="datos-flotantes">
       <h3 id="nombre-flotante"></h3>
       <p class="precio" id="precio-flotante"></p>
       <div><strong>Color:</strong><div class="colores" id="colores-flotante"></div></div>
     </div>
-
-    <!-- Tallas y botón -->
     <div class="tallas" id="producto-tallas"></div>
+    <input type="number" id="cantidad" value="1" min="1" style="margin-top:0.5rem;width:60px;">
     <button class="btn-carrito" id="btn-carrito">Añadir al carrito</button>
   </div>
 
   <div class="info-derecha">
     <p class="precio" id="producto-precio"></p>
-    <div>
-      <strong>Color:</strong>
-      <div class="colores" id="producto-colores"></div>
-    </div>
+    <div><strong>Color:</strong><div class="colores" id="producto-colores"></div></div>
   </div>
 </section>
 
@@ -186,16 +178,22 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   <div id="relacionados"></div>
 </section>
 
+<!-- Visor pantalla completa -->
+<div id="fullscreen-img">
+  <img id="fullscreen-img-tag" src="">
+  <div id="close-fullscreen">×</div>
+</div>
+
 <script>
 const productos = {
   'camiseta-oversize': { 
     nombre: 'TWILL LOGO CAP – Black Edition', 
     descripcion: 'La TWILL LOGO CAP en color negro es una versión contemporánea...',
     precio: 350, 
-    imagen: '42.png', 
+    imagen: '5.png', 
     imagen2: '4.jpeg', 
-    colores: ['#000'], 
-    tallas: ['Talla unica'],
+    colores: ['Negro'], 
+    tallas: ['Talla única'],
     relacionados: ['pantalon-cargo', 'sudadera-unisex'] 
   },
   'pantalon-cargo': { 
@@ -203,16 +201,16 @@ const productos = {
     descripcion: 'Comodidad y estilo en un diseño moderno.', 
     precio: 220, 
     imagen: '1.jpeg',
-    colores: ['#000'], 
+    colores: ['Blanco','Negro'], 
     tallas: ['S','M','L','XL'],
     relacionados: ['camiseta-oversize', 'sudadera-unisex'] 
   },
   'sudadera-unisex': { 
     nombre: 'NIGHTFLEX BAG – VogueCrest', 
-    descripcion: 'La bolsa NIGHTFLEX de VogueCrest combina la resistencia de la tela deportiva negra con un diseño moderno y funcional. Su estructura firme y flexible se adapta a cada movimiento, mientras las asas reforzadas aseguran comodidad y durabilidad. El logo de VogueCrest, presente de forma elegante, aporta un sello de identidad contemporáneo. Perfecta para el uso diario y actividades deportivas, la NIGHTFLEX BAG fusiona estilo urbano con practicidad en una pieza imprescindible.', 
+    descripcion: 'La bolsa NIGHTFLEX de VogueCrest combina la resistencia de la tela deportiva negra con un diseño moderno y funcional...', 
     precio: 950, 
     imagen: '013.png',
-    colores: ['#000'], 
+    colores: ['Negro'], 
     tallas: ["30x20x10 cm", "40x25x15 cm"],
     relacionados: ['camiseta-oversize'] 
   }
@@ -221,6 +219,7 @@ const productos = {
 const urlParams = new URLSearchParams(window.location.search);
 const slug = urlParams.get('producto');
 const producto = productos[slug];
+const coloresHex = { 'Negro': '#000000', 'Blanco': '#ffffff' };
 
 if(producto){
   document.getElementById('producto-nombre').textContent = producto.nombre;
@@ -229,7 +228,6 @@ if(producto){
   document.getElementById('nombre-flotante').textContent = producto.nombre;
   document.getElementById('precio-flotante').textContent = 'C$' + producto.precio.toFixed();
 
-  // Galería
   const galeria = document.getElementById('galeria');
   [producto.imagen, producto.imagen2, producto.imagen3].forEach(src => {
     if(src){
@@ -246,9 +244,10 @@ if(producto){
     [coloresDiv, coloresFlot].forEach(parent => {
       const colorElem = document.createElement('div');
       colorElem.classList.add('color');
-      colorElem.style.background = c;
+      colorElem.style.background = coloresHex[c] || '#ccc';
+      colorElem.title = c;
       colorElem.addEventListener('click', () => {
-        document.querySelectorAll('.color').forEach(el=>el.classList.remove('selected'));
+        document.querySelectorAll('.color').forEach(el => el.classList.remove('selected'));
         colorElem.classList.add('selected');
       });
       parent.appendChild(colorElem);
@@ -268,36 +267,65 @@ if(producto){
     tallasDiv.appendChild(tallaElem);
   });
 
-  // Carrito
+  // Zoom pantalla completa
+  document.querySelectorAll('.galeria img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      const fs = document.getElementById('fullscreen-img');
+      const fsImg = document.getElementById('fullscreen-img-tag');
+      fsImg.src = img.src;
+      fs.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('close-fullscreen').addEventListener('click', () => {
+    const fs = document.getElementById('fullscreen-img');
+    fs.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  document.getElementById('fullscreen-img').addEventListener('click', (e) => {
+    if(e.target.id === 'fullscreen-img'){
+      e.currentTarget.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  // Añadir al carrito
   document.getElementById('btn-carrito').onclick = () => {
     const colorSel = document.querySelector('.color.selected');
     const tallaSel = document.querySelector('.talla.selected');
+    const cantidadSel = parseInt(document.getElementById('cantidad').value);
     if(!colorSel || !tallaSel){ alert('Seleccione color y talla'); return; }
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({
       name: producto.nombre,
       price: producto.precio,
-      color: colorSel.style.background,
+      color: colorSel.title,
       talla: tallaSel.textContent,
+      cantidad: cantidadSel,
       imagen: producto.imagen
     });
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
+    alert('Producto agregado al carrito');
   };
 
-  // Relacionados
+  // Productos relacionados
   const relDiv = document.getElementById('relacionados');
   producto.relacionados.forEach(rel => {
     const p = productos[rel];
     if(p){
       const div = document.createElement('div');
       div.className = 'relacionado';
-      div.innerHTML = `<img src="${p.imagen}" alt="${p.nombre}"><p>${p.nombre}</p>`;
+      div.innerHTML = `<img src="${p.imagen}" alt="${p.nombre}"><p></p>`;
       div.onclick = () => window.location.href = `producto.html?producto=${rel}`;
       relDiv.appendChild(div);
     }
   });
+
 }else{
   document.body.innerHTML = '<p style="text-align:center;margin-top:2rem;">Producto no encontrado</p>';
 }
