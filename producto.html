@@ -46,30 +46,10 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 .productos-relacionados h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 1.1rem; }
 .productos-relacionados .relacionado { display: inline-block; margin-right: 1rem; text-align: center; cursor: pointer; margin-bottom: 1rem; font-size: 0.9rem; }
 .productos-relacionados img { width: 120px; border-radius: 10px; }
-#relacionados-container {
-  overflow-x: auto;
-  padding-bottom: 1rem;
-}
-
-#relacionados {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
-}
-
-.productos-relacionados .relacionado {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  cursor: pointer;
-  min-width: 120px;
-}
-
-.productos-relacionados .relacionado img {
-  width: 120px;
-  border-radius: 10px;
-}
+#relacionados-container { overflow-x: auto; padding-bottom: 1rem; }
+#relacionados { display: flex; gap: 1rem; flex-wrap: nowrap; }
+.productos-relacionados .relacionado { flex: 0 0 auto; display: flex; flex-direction: column; text-align: center; cursor: pointer; min-width: 120px; }
+.productos-relacionados .relacionado img { width: 120px; border-radius: 10px; }
 
 /* Datos flotantes móvil */
 .datos-flotantes { display: none; }
@@ -77,18 +57,7 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   .producto-detalle { flex-direction: column; align-items: center; }
   .info-izquierda, .info-derecha { display: none; }
   .imagen-centro { width: 100%; max-width: 400px; position: relative; }
-  .datos-flotantes {
-    display: flex;
-    position: absolute;
-    top: 10px;
-    right: -20px;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    flex-direction: column;
-    gap: 0.2rem;
-    font-size: 0.8rem;
-    width: 25%;
-  }
+  .datos-flotantes { display: flex; position: absolute; top: 10px; right: -20px; padding: 0.5rem 1rem; border-radius: 8px; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; width: 25%; }
   .tallas { width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
   .talla { flex: 1; text-align: center; padding: 0.8rem; font-size: 1rem; border: none; background: transparent; }
   .talla.selected { font-weight: 700; text-decoration: underline; }
@@ -96,43 +65,43 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 }
 
 /* Estilo input cantidad en escritorio */
-#cantidad {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  width: 60px;
-  padding: 0.3rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+#cantidad { margin-top: 0.5rem; margin-bottom: 1rem; width: 60px; padding: 0.3rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; }
 
 /* Pantalla completa de imagen */
-#fullscreen-img {
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:black;
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
+#fullscreen-img { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgb(255, 255, 255); z-index:9999; justify-content:center; align-items:center; }
+#fullscreen-img img { max-width:100%; max-height:100%; object-fit:contain; }
+#close-fullscreen { position:absolute; top:20px; right:20px; font-size:2rem; color:rgb(0, 0, 0); cursor:pointer; font-weight:bold; }
+
+/* Toast notificación */
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #111;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-size: 0.95rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-#fullscreen-img img {
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
+#toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
-#close-fullscreen {
-  position:absolute;
-  top:20px;
-  right:20px;
-  font-size:2rem;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
+#toast svg {
+  width: 20px;
+  height: 20px;
+  fill: #4CAF50;
 }
+#toast.error svg { fill: #f44336; }
 </style>
 </head>
 <body>
@@ -184,6 +153,9 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   <div id="close-fullscreen">×</div>
 </div>
 
+<!-- Toast notificación -->
+<div id="toast"></div>
+
 <script>
 const productos = {
   'camiseta-oversize': { 
@@ -201,7 +173,8 @@ const productos = {
     descripcion: 'Comodidad y estilo en un diseño moderno.', 
     precio: 220, 
     imagen: '1.jpeg',
-    colores: ['Blanco','Negro'], 
+    imagen2: '6.jpeg',
+    colores: ['Negro'], 
     tallas: ['S','M','L','XL'],
     relacionados: ['camiseta-oversize'] 
   },
@@ -213,6 +186,17 @@ const productos = {
     colores: ['Negro'], 
     tallas: ["30x20x10 cm", "40x25x15 cm"],
     relacionados: ['camiseta-oversize'] 
+  },
+  'overzide': { 
+    nombre: 'ECLIPSE T-SHIRT', 
+    descripcion: 'Camiseta urbana de tejido cómodo, estilo minimalista y color oscuro, ideal para un look moderno y versátil.', 
+    precio: 260, 
+    imagen: '7.jpeg',
+    imagen2 : '8.jpeg',
+    imagen3 : '9.jpeg',
+    colores: ['Negro'], 
+    tallas: ['S','M','L','XL'],
+    relacionados: ['pantalon-cargo'] 
   }
 };
 
@@ -220,6 +204,16 @@ const urlParams = new URLSearchParams(window.location.search);
 const slug = urlParams.get('producto');
 const producto = productos[slug];
 const coloresHex = { 'Negro': '#000000', 'Blanco': '#ffffff' };
+
+function showToast(message, type='success'){
+  const toast = document.getElementById('toast');
+  toast.className = type==='error'?'error':'';
+  toast.innerHTML = type==='error'
+    ? `<svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>${message}`
+    : `<svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-2 17.5l-5-5 1.414-1.414L10 14.672l7.586-7.586L19 8.5l-9 9z"/></svg>${message}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
 
 if(producto){
   document.getElementById('producto-nombre').textContent = producto.nombre;
@@ -297,7 +291,11 @@ if(producto){
     const colorSel = document.querySelector('.color.selected');
     const tallaSel = document.querySelector('.talla.selected');
     const cantidadSel = parseInt(document.getElementById('cantidad').value);
-    if(!colorSel || !tallaSel){ alert('Seleccione color y talla'); return; }
+
+    if(!colorSel || !tallaSel){ 
+      showToast('Seleccione color y talla', 'error'); 
+      return; 
+    }
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({
@@ -310,7 +308,7 @@ if(producto){
     });
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    alert('Producto agregado al carrito');
+    showToast('Producto agregado al carrito', 'success');
   };
 
   // Productos relacionados
