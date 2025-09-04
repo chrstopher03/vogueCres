@@ -1,57 +1,338 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logo 3D Girando Infinito</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #000;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VogueCrest - Colecciones</title>
 
-    .logo-container {
-      width: 220px;
-      height: 220px;
-      perspective: 1000px; /* Profundidad */
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    .logo {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: spin 6s linear infinite; /* Giro continuo */
-    }
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .logo img {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      backface-visibility: hidden; /* Oculta reverso en cada cara */
-    }
+  body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
 
-    .front { transform: rotateY(0deg); }
-    .back  { transform: rotateY(180deg); }
+  /* Contenido principal oculto al inicio */
+  #main-content { display: none; }
 
-    @keyframes spin {
-      from { transform: rotateY(0deg); }
-      to   { transform: rotateY(360deg); }
-    }
-  </style>
+  /* Splash */
+  #splash {
+    position: fixed; top:0; left:0; width:100vw; height:100vh;
+    background:#ffffff; display:flex; justify-content:center; align-items:center;
+    flex-direction:column; z-index:9999; font-family:'Playfair Display', serif; font-size:2rem;
+  }
+  #splash img { width:150px; margin-bottom:1rem; animation: scaleUp 1.5s ease; }
+  @keyframes scaleUp { 0% { transform: scale(0); opacity:0; } 50% { transform: scale(1.2); opacity:1; } 100% { transform: scale(1); opacity:1; } }
+  #splash.fade-out { animation: fadeOut 1s ease forwards; }
+  @keyframes fadeOut { to { opacity:0; visibility:hidden; } }
+
+  /* Coming Soon */
+  #coming-soon {
+    display:none;
+    position:fixed; top:0; left:0; width:100vw; height:100vh;
+    background-image: url('12.jpeg'); 
+    background-size: cover; 
+    background-position: center;
+    color:#fff; 
+    flex-direction:column; 
+    justify-content:center; 
+    align-items:center;
+    text-align:center; 
+    z-index:9998; 
+    padding:1rem;
+  }
+
+  #coming-main-text {
+    font-size:2rem;
+    font-weight:400;
+    margin-bottom:0.5rem;
+    font-family:'Playfair Display', serif;
+  }
+
+  #coming-sub-text {
+    font-size:1rem;
+    font-weight:300;
+    margin-bottom:0.5rem;
+    font-family:'Inter', sans-serif;
+    max-width:320px;
+    line-height:1.4;
+  }
+
+  #coming-counter {
+    font-size:1rem;
+    font-weight:400;
+    margin-bottom:1.5rem;
+    font-family:'Playfair Display', serif;
+  }
+
+  /* Logo 3D */
+  .logo-container {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    margin-bottom: 2rem;
+  }
+  .logo {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: spin 5s linear infinite;
+    position: relative;
+  }
+  .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top:0; left:0;
+    filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.5));
+  }
+  @keyframes spin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+
+  /* Formulario correo mejorado */
+  #email-form {
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem; margin-top:1rem; max-width:400px; width:100%;
+  }
+  #email-form .flex-row {
+    display:flex; width:100%; gap:0.5rem;
+  }
+  #email-form input[type="email"] {
+    flex:1;
+    padding:0.5rem 1rem;
+    border-radius:5px;
+    border:1px solid #fff;
+    background:transparent;
+    color:#fff;
+    caret-color:#fff;
+    transition: all 0.3s ease;
+  }
+  #email-form input[type="email"]:hover, 
+  #email-form input[type="email"]:focus {
+    background: rgba(255,255,255,0.1);
+    border-color:#fff;
+    outline:none;
+  }
+  #email-form button {
+    padding:0.5rem 1rem;
+    border-radius:5px;
+    border:1px solid #fff;
+    background:#fff;
+    color:#000;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  #email-form button:hover {
+    background:#000;
+    color:#fff;
+    border:1px solid #fff;
+  }
+  #email-form label {
+    font-size:0.75rem; color:#fff; line-height:1.2;
+  }
+  #email-form .checkbox-wrapper { display:flex; align-items:flex-start; gap:0.5rem; width:100%; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #111;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    z-index: 10000;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .toast.error { background: #b91c1c; }
+  .toast.success { background: #16a34a; }
+
+  /* Header y productos */
+  header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid #e5e5e5; background:#000; position:sticky; top:0; z-index:100; }
+  .menu-toggle, .cesta { width:80px; font-weight:600; cursor:pointer; color:#fff; }
+  .menu-toggle { text-align:left; }
+  .cesta { text-align:right; }
+  .logo-container-header { flex:1; text-align:center; }
+  .logo-header { height:50px; object-fit:contain; }
+  .menu { position:absolute; top:70px; left:0; right:0; background:#000; flex-direction:column; gap:1rem; padding:1rem 2rem; display:none; border-bottom:1px solid #e5e5e5; z-index:99; }
+  .menu.show { display:flex; }
+  .menu a { text-decoration:none; color:#fff; font-weight:500; transition:color 0.2s; }
+  .menu a:hover { color:#bbb; }
+
+  .productos { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; padding:3rem 2rem 2rem 2rem; max-width:1200px; margin:auto; }
+  .producto { border:none; overflow:hidden; background:#111; transition:transform 0.2s; cursor:pointer; }
+  .producto:hover { transform:translateY(-3px); }
+  .producto img { width:100%; aspect-ratio:1/1; object-fit:cover; }
+  .producto-info { padding:1rem; }
+  .producto-info .precio { font-weight:600; margin-bottom:0.8rem; color:#fff; }
+
+  footer { padding:2rem; text-align:center; font-size:0.9rem; color:#ccc; border-top:1px solid #222; margin-top:3rem; }
+
+  @media (max-width: 768px) {
+    .productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 2rem 1rem; }
+    #coming-main-text { font-size:1.8rem; }
+    #coming-sub-text { font-size:0.9rem; max-width:260px; }
+    #coming-counter { font-size:0.9rem; }
+  }
+</style>
 </head>
 <body>
+
+<!-- Splash -->
+<div id="splash">
+  <img src="100-removebg-preview.png" alt="VogueCrest">
+</div>
+
+<!-- Coming Soon -->
+<div id="coming-soon">
+  <div id="coming-main-text">UNIDADES LIMITADAS. ACCESO ANTICIPADO</div>
+  <div id="coming-sub-text">Sé el primero en desbloquear nuestra primera colección Origen. Pocas piezas.</div>
+  <div id="coming-counter">(11.09) (2025)</div>
+  
   <div class="logo-container">
-    <div class="logo">
-      <img src="10-removebg-preview.png" alt="Logo" class="front">
-      <img src="10-removebg-preview.png" alt="Logo" class="back">
+    <div class="logo"><img src="10-removebg-preview.png" alt="Logo 3D"></div>
+  </div>
+
+  <!-- Formulario de correo -->
+  <div id="email-form">
+    <div class="flex-row">
+      <input type="email" id="user-email" placeholder="Tu correo">
+      <button id="submit-email">Enviar</button>
+    </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="terms">
+      <label for="terms">
+        I accept <strong>VGC.OF Terms and Conditions</strong> and the <strong>Privacy Policy</strong>, and I agree to receive marketing communications.
+      </label>
     </div>
   </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast" class="toast"></div>
+
+<!-- Contenido principal -->
+<div id="main-content">
+  <!-- Header y productos -->
+  <header>
+    <div class="menu-toggle" id="menu-toggle">Menu</div>
+    <div class="logo-container-header"><img src="100.png" alt="VogueCrest" class="logo-header"></div>
+    <div class="cesta" onclick="window.location.href='cesta.html'">Cesta (<span id="cart-count">0</span>)</div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="colecciones.html">Colecciones</a>
+      <a href="cesta.html">Cesta</a>
+    </nav>
+  </header>
+
+  <section class="productos">
+    <div class="producto" onclick="viewProduct('camiseta-oversize')">
+      <img src="42.png" alt="Camiseta Oversize">
+      <div class="producto-info"><p class="precio">C$350</p></div>
+    </div>
+    <div class="producto" onclick="viewProduct('pantalon-cargo')">
+      <img src="1.png" alt="Pantalón Cargo">
+      <div class="producto-info"><p class="precio">C$220</p></div>
+    </div>
+    <div class="producto" onclick="viewProduct('sudadera-unisex')">
+      <img src="013.png" alt="Sudadera Unisex">
+      <div class="producto-info"><p class="precio">C$950</p></div>
+    </div>
+    <div class="producto" onclick="viewProduct('overzide')">
+      <img src="9.png" alt="overzide">
+      <div class="producto-info"><p class="precio">C$950</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://www.instagram.com/vgc.of" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width:25px;height:25px;">
+    </a>
+    <p>© 2025 VogueCrest. Todos los derechos reservados.</p>
+  </footer>
+</div>
+
+<script>const launchDate = new Date(2025,8,11,10,0,0);
+
+// Splash y Coming Soon
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash');
+  const coming = document.getElementById('coming-soon');
+  const main = document.getElementById('main-content');
+
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+    setTimeout(() => {
+      splash.style.display='none';
+      const now = new Date();
+      if(now >= launchDate){
+        main.style.display='block';
+      } else {
+        coming.style.display='flex';
+        const timer = setInterval(()=>{
+          const now = new Date();
+          if(now >= launchDate){
+            clearInterval(timer);
+            coming.style.display='none';
+            main.style.display='block';
+          }
+        },1000);
+      }
+    },1000);
+  },2000);
+
+  // Ocultar formulario si ya se registró
+  if(localStorage.getItem('vgc_registered')){
+    const emailForm = document.getElementById('email-form');
+    if(emailForm) emailForm.style.display = 'none';
+  }
+});
+
+// Toast notificaciones
+function showToast(message, type="success"){
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = "toast " + type + " show";
+  setTimeout(()=>{ toast.className = "toast"; },3000);
+
+  const audio = new Audio('https://assets.codepen.io/605876/notification.mp3');
+  audio.volume = 0.3;
+  audio.play().catch(e=>{});
+}
+
+// Funciones principales
+function viewProduct(slug){ window.location.href=`producto.html?producto=${slug}`; }
+document.getElementById('menu-toggle').addEventListener('click',()=>{document.getElementById('menu').classList.toggle('show');});
+
+// Formulario registro correo
+document.getElementById('submit-email').addEventListener('click', ()=>{
+  const email = document.getElementById('user-email').value.trim();
+  const terms = document.getElementById('terms').checked;
+
+  if(!email){ showToast("Ingresa tu correo.", "error"); return; }
+  if(!terms){ showToast("Debes aceptar los términos.", "error"); return; }
+
+  console.log("Correo registrado:", email);
+  showToast("Registro exitoso. ¡Gracias!", "success");
+
+  // Guardar en localStorage para que no vuelva a pedir
+  localStorage.setItem('vgc_registered', 'true');
+  localStorage.setItem('vgc_email', email);
+
+  document.getElementById('email-form').style.display = 'none';
+});
+
+</script>
 </body>
 </html>
