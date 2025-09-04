@@ -31,20 +31,38 @@
   #coming-soon {
     display:none;
     position:fixed; top:0; left:0; width:100vw; height:100vh;
-    background-image: url('12.jpeg'); color:#fff; flex-direction:column; justify-content:center; align-items:center;
-    font-family:'Playfair Display', serif; font-size:2rem; text-align:center; z-index:9998;
+    background-image: url('12.jpeg'); 
+    background-size: cover; 
+    background-position: center;
+    color:#fff; 
+    flex-direction:column; 
+    justify-content:center; 
+    align-items:center;
+    text-align:center; 
+    z-index:9998; 
+    padding:1rem;
   }
 
-  #coming-origin {
+  #coming-main-text {
     font-size:2rem;
-    font-weight:700;
+    font-weight:400; /* menos gruesa */
     margin-bottom:0.5rem;
     font-family:'Playfair Display', serif;
   }
+
+  #coming-sub-text {
+    font-size:1rem;
+    font-weight:300; /* ligera */
+    margin-bottom:0.5rem;
+    font-family:'Inter', sans-serif;
+    max-width:320px;
+    line-height:1.4;
+  }
+
   #coming-counter {
-    font-size:1.8rem;
-    font-weight:500;
-    margin-bottom:1rem;
+    font-size:1rem;
+    font-weight:400;
+    margin-bottom:1.5rem;
     font-family:'Playfair Display', serif;
   }
 
@@ -103,8 +121,9 @@
       gap: 1rem;
       padding: 2rem 1rem;
     }
-    #coming-origin { font-size:1.8rem; }
-    #coming-counter { font-size:1.5rem; }
+    #coming-main-text { font-size:1.8rem; }
+    #coming-sub-text { font-size:0.9rem; max-width:260px; }
+    #coming-counter { font-size:0.9rem; }
   }
 </style>
 </head>
@@ -117,8 +136,9 @@
 
 <!-- Coming Soon -->
 <div id="coming-soon">
-  
-  
+  <div id="coming-main-text">UNIDADES LIMITADAS. ACCESO ANTICIPADO</div>
+  <div id="coming-sub-text">Sé el primero en desbloquear nuestra primera colección Origen. Pocas piezas.</div>
+  <div id="coming-counter">(11.09) (2025)</div>
   <div class="logo-container">
     <div class="logo"><img src="10-removebg-preview.png" alt="Logo 3D"></div>
   </div>
