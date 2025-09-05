@@ -44,14 +44,12 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 
 .productos-relacionados { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
 .productos-relacionados h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 1.1rem; }
-.productos-relacionados .relacionado { display: inline-block; margin-right: 1rem; text-align: center; cursor: pointer; margin-bottom: 1rem; font-size: 0.9rem; }
-.productos-relacionados img { width: 120px; border-radius: 10px; }
-#relacionados-container { overflow-x: auto; padding-bottom: 1rem; }
+#relacionados-container { overflow-x: auto; padding-bottom: 1rem; scroll-behavior: smooth; }
 #relacionados { display: flex; gap: 1rem; flex-wrap: nowrap; }
-.productos-relacionados .relacionado { flex: 0 0 auto; display: flex; flex-direction: column; text-align: center; cursor: pointer; min-width: 120px; }
-.productos-relacionados .relacionado img { width: 120px; border-radius: 10px; }
+.productos-relacionados .relacionado { flex: 0 0 auto; display: flex; flex-direction: column; text-align: center; cursor: pointer; min-width: 180px; font-size: 1rem; }
+.productos-relacionados .relacionado img { width: 180px; height: auto; border-radius: 12px; object-fit: cover; transition: transform 0.3s ease; }
+.productos-relacionados .relacionado img:hover { transform: scale(1.05); }
 
-/* Datos flotantes móvil */
 .datos-flotantes { display: none; }
 @media (max-width: 768px) {
   .producto-detalle { flex-direction: column; align-items: center; }
@@ -64,7 +62,6 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   .btn-carrito { width: 100%; margin-top: 1rem; padding: 1rem; font-size: 1rem; border-radius: 8px; }
 }
 
-/* Estilo input cantidad en escritorio */
 #cantidad { margin-top: 0.5rem; margin-bottom: 1rem; width: 60px; padding: 0.3rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; }
 
 /* Pantalla completa de imagen */
@@ -96,11 +93,7 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   pointer-events: auto;
   transform: translateY(0);
 }
-#toast svg {
-  width: 20px;
-  height: 20px;
-  fill: #4CAF50;
-}
+#toast svg { width: 20px; height: 20px; fill: #4CAF50; }
 #toast.error svg { fill: #f44336; }
 </style>
 </head>
@@ -144,7 +137,9 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
 
 <section class="productos-relacionados">
   <h3>Productos relacionados</h3>
-  <div id="relacionados"></div>
+  <div id="relacionados-container">
+    <div id="relacionados"></div>
+  </div>
 </section>
 
 <!-- Visor pantalla completa -->
@@ -209,7 +204,6 @@ const productos = {
     tallas: ['S','M','L','XL'],
     relacionados: ['overzide'] 
   },
- 
   'gorr': { 
     nombre: 'Night Strike', 
     descripcion: 'Transmite fuerza, impacto y misterio. Perfecto para un diseño que resalta de noche por el contraste blanco sobre negro.', 
@@ -252,7 +246,6 @@ if(producto){
     }
   });
 
-  // Colores
   const coloresDiv = document.getElementById('producto-colores');
   const coloresFlot = document.getElementById('colores-flotante');
   producto.colores.forEach(c => {
@@ -269,7 +262,6 @@ if(producto){
     });
   });
 
-  // Tallas
   const tallasDiv = document.getElementById('producto-tallas');
   producto.tallas.forEach(t => {
     const tallaElem = document.createElement('div');
@@ -282,7 +274,6 @@ if(producto){
     tallasDiv.appendChild(tallaElem);
   });
 
-  // Zoom pantalla completa
   document.querySelectorAll('.galeria img').forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
@@ -307,7 +298,6 @@ if(producto){
     }
   });
 
-  // Añadir al carrito
   document.getElementById('btn-carrito').onclick = () => {
     const colorSel = document.querySelector('.color.selected');
     const tallaSel = document.querySelector('.talla.selected');
@@ -332,32 +322,29 @@ if(producto){
     showToast('Producto agregado al carrito', 'success');
   };
 
-  // Productos relacionados
   const relDiv = document.getElementById('relacionados');
-  producto.relacionados.forEach(rel => {
-    const p = productos[rel];
-    if(p){
+  producto.relacionados.forEach(r => {
+    const relProd = productos[r];
+    if(relProd){
       const div = document.createElement('div');
       div.className = 'relacionado';
-      div.innerHTML = `<img src="${p.imagen}" alt="${p.nombre}"><p></p>`;
-      div.onclick = () => window.location.href = `producto.html?producto=${rel}`;
+      div.innerHTML = `<img src="${relProd.imagen}" alt="${relProd.nombre}"></span>`;
+      div.addEventListener('click', ()=>{ window.location.href = 'producto.html?producto='+r; });
       relDiv.appendChild(div);
     }
   });
-
-}else{
-  document.body.innerHTML = '<p style="text-align:center;margin-top:2rem;">Producto no encontrado</p>';
 }
 
-document.getElementById('menu-toggle').addEventListener('click', () => {
-  document.getElementById('menu').classList.toggle('show');
-});
-
-function updateCartCount() {
+function updateCartCount(){
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   document.getElementById('cart-count').textContent = cart.length;
 }
 updateCartCount();
+
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('menu').classList.toggle('show');
+});
 </script>
+
 </body>
 </html>
