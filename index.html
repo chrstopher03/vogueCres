@@ -11,7 +11,7 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
+  body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #fff; overflow-x: hidden; }
 
   /* Contenido principal oculto al inicio */
   #main-content { display: none; }
@@ -112,7 +112,7 @@
   }
   #email-form input[type="email"]:hover, 
   #email-form input[type="email"]:focus {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 237, 237, 0.1);
     border-color:#fff;
     outline:none;
   }
@@ -140,7 +140,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #111;
+    background: #ffffff;
     color: #fff;
     padding: 1rem 1.5rem;
     border-radius: 8px;
@@ -159,8 +159,8 @@
   .toast.success { background: #16a34a; }
 
   /* Header y productos */
-  header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid #e5e5e5; background:#000; position:sticky; top:0; z-index:100; }
-  .menu-toggle, .cesta { width:80px; font-weight:600; cursor:pointer; color:#fff; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid #e5e5e5; background:#ffffff; position:sticky; top:0; z-index:100; }
+  .menu-toggle, .cesta { width:80px; font-weight:600; cursor:pointer; color:#000000; }
   .menu-toggle { text-align:left; }
   .cesta { text-align:right; }
   .logo-container-header { flex:1; text-align:center; }
@@ -171,13 +171,13 @@
   .menu a:hover { color:#bbb; }
 
   .productos { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; padding:3rem 2rem 2rem 2rem; max-width:1200px; margin:auto; }
-  .producto { border:none; overflow:hidden; background:#111; transition:transform 0.2s; cursor:pointer; }
+  .producto { border:none; overflow:hidden; background:#ffffff; transition:transform 0.2s; cursor:pointer; }
   .producto:hover { transform:translateY(-3px); }
   .producto img { width:100%; aspect-ratio:1/1; object-fit:cover; }
   .producto-info { padding:1rem; }
-  .producto-info .precio { font-weight:600; margin-bottom:0.8rem; color:#fff; }
+  .producto-info .precio { font-weight:600; margin-bottom:0.8rem; color:#000000; }
 
-  footer { padding:2rem; text-align:center; font-size:0.9rem; color:#ccc; border-top:1px solid #222; margin-top:3rem; }
+  footer { padding:2rem; text-align:center; font-size:0.9rem; color:#ccc; border-top:1px solid #ffffff; margin-top:3rem; }
 
   @media (max-width: 768px) {
     .productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 2rem 1rem; }
@@ -198,7 +198,7 @@
 <div id="coming-soon">
   <div id="coming-main-text">UNIDADES LIMITADAS. ACCESO ANTICIPADO</div>
   <div id="coming-sub-text">Sé el primero en desbloquear nuestra primera colección Origen. Pocas piezas.</div>
-  <div id="coming-counter">(11.09) (2025)</div>
+  <div id="coming-counter">(16.09) (2025)</div>
   
   <div class="logo-container">
     <div class="logo"><img src="10-removebg-preview.png" alt="Logo 3D"></div>
@@ -251,7 +251,15 @@
     </div>
     <div class="producto" onclick="viewProduct('overzide')">
       <img src="9.png" alt="overzide">
-      <div class="producto-info"><p class="precio">C$950</p></div>
+      <div class="producto-info"><p class="precio">C$550</p></div>
+    </div>
+    <div class="producto" onclick="viewProduct('vogue')">
+      <img src="14.jpeg" alt="vogue">
+      <div class="producto-info"><p class="precio">C$550</p></div>
+    </div>
+    <div class="producto" onclick="viewProduct('gorr')">
+      <img src="17.png" alt="gorr">
+      <div class="producto-info"><p class="precio">C$550</p></div>
     </div>
   </section>
 
@@ -263,7 +271,7 @@
   </footer>
 </div>
 
-<script>const launchDate = new Date(2025,8,11,10,0,0);
+<script>const launchDate = new Date(2025,8,4,10,0,0);
 
 // Splash y Coming Soon
 window.addEventListener('load', () => {
