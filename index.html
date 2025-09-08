@@ -347,7 +347,7 @@
 </div>
 
 <script>
-const launchDate = new Date(2025,8,19,10,0,0);
+const launchDate = new Date(2025,8,19,10,0,0); // 19 de septiembre 2025, 10:00am
 
 // Splash y Coming Soon
 window.addEventListener('load', () => {
@@ -355,14 +355,17 @@ window.addEventListener('load', () => {
   const coming = document.getElementById('coming-soon');
   const main = document.getElementById('main-content');
 
+  // Ocultar el main desde el inicio
+  main.style.display = 'none';
+
   setTimeout(() => {
     splash.classList.add('fade-out');
     setTimeout(() => {
       splash.style.display='none';
+
       const now = new Date();
-      if(now >= launchDate){
-        main.style.display='block';
-      } else {
+      if(now < launchDate){
+        // Mostrar Coming Soon hasta el día del lanzamiento
         coming.style.display='flex';
         const timer = setInterval(()=>{
           const now = new Date();
@@ -372,6 +375,9 @@ window.addEventListener('load', () => {
             main.style.display='block';
           }
         },1000);
+      } else {
+        // Si ya pasó la fecha, mostrar directamente el sitio principal
+        main.style.display='block';
       }
     },1000);
   },2000);
@@ -424,5 +430,6 @@ document.getElementById('menu-toggle').addEventListener('click', () => {
   document.getElementById('menu').classList.toggle('show');
 });
 </script>
+
 </body>
 </html>
