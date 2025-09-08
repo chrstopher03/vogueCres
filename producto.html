@@ -6,68 +6,236 @@
 <title>Producto - VogueCrest</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-body { font-family: 'Inter', sans-serif; background: #fff; margin: 0; }
+/* Fuente principal */
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: #fff; 
+  margin: 0; 
+}
+
+/* Contenedor producto escritorio */
+.producto-detalle { 
+  display: flex; 
+  max-width: 1200px; 
+  margin: 2rem auto; 
+  gap: 9rem; 
+  align-items: center; 
+  padding: 0 3rem; 
+  font-family: 'Inter', sans-serif;
+}
+
+.info-izquierda, .info-derecha { 
+  flex-direction: column; 
+  justify-content: center; 
+  gap: 1rem; 
+  font-family: 'Inter', sans-serif;
+}
+
+.info-izquierda { 
+  flex: 1 1 30%; 
+  padding-right: 1rem; 
+}
+
+.info-derecha { 
+  flex: 1 1 30%; 
+  padding-left: 1rem; 
+}
 
 /* Header */
-header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #e5e5e5; background: #fff; position: sticky; top: 0; z-index: 100; }
-.menu-toggle, .cesta { width: 80px; font-weight: 600; cursor: pointer; }
+header { 
+  display: flex; 
+  align-items: center; 
+  padding: 1rem 1.5rem; 
+  border-bottom: 1px solid #e5e5e5; 
+  background: #fff; 
+  position: sticky; 
+  top: 0; 
+  z-index: 100; 
+  font-family: 'Inter', sans-serif;
+}
+.menu-toggle, .cesta { 
+  width: 80px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  font-family: 'Inter', sans-serif;
+}
 .menu-toggle { text-align: left; }
 .cesta { text-align: right; }
 .logo-container { flex: 1; text-align: center; }
 .logo { height: 50px; object-fit: contain; }
 
 /* Menu */
-.menu { position: absolute; top: 70px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 1rem; padding: 1rem 2rem; display: none; border-bottom: 1px solid #e5e5e5; z-index: 99; }
+.menu { 
+  position: absolute; 
+  top: 70px; 
+  left: 0; 
+  right: 0; 
+  background: #fff; 
+  flex-direction: column; 
+  gap: 1rem; 
+  padding: 1rem 2rem; 
+  display: none; 
+  border-bottom: 1px solid #e5e5e5; 
+  z-index: 99; 
+  font-family: 'Inter', sans-serif;
+}
 .menu.show { display: flex; }
-.menu a { text-decoration: none; color: #111; font-weight: 500; transition: color 0.2s; }
+.menu a { 
+  text-decoration: none; 
+  color: #111; 
+  font-weight: 500; 
+  transition: color 0.2s; 
+  font-family: 'Inter', sans-serif;
+}
 .menu a:hover { color: #555; }
 
-/* Contenedor producto escritorio */
-.producto-detalle { display: flex; max-width: 1200px; margin: 2rem auto; gap: 2rem; align-items: center; padding: 0 1rem; }
-.info-izquierda, .info-derecha { display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; }
-.info-izquierda { flex: 1 1 30%; }
-.imagen-centro { flex: 1 1 40%; display: flex; flex-direction: column; align-items: center; position: relative; }
-.info-derecha { flex: 1 1 30%; }
-
-.info-izquierda h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
-#producto-descripcion { white-space: normal; text-align: left; line-height: 1.5; }
-.precio { font-weight: 700; font-size: 1.1rem; }
-.colores, .tallas { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
-.color, .talla { cursor: pointer; border: 1px solid #ccc; border-radius: 5px; padding: 0.5rem 0.7rem; }
-.color.selected, .talla.selected { border: 2px solid #111; font-weight: 700; }
-
-.galeria { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
-.galeria img { width: 100%; max-width: 400px; border-radius: 10px; object-fit: cover; }
-
-.btn-carrito { padding: 0.6rem 1rem; background: #111; color: #fff; border: none; cursor: pointer; border-radius: 5px; width: fit-content; font-size: 0.9rem; transition: background 0.2s; }
-.btn-carrito:hover { background: #333; }
-
-.productos-relacionados { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-.productos-relacionados h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 1.1rem; }
-#relacionados-container { overflow-x: auto; padding-bottom: 1rem; scroll-behavior: smooth; }
-#relacionados { display: flex; gap: 1rem; flex-wrap: nowrap; }
-.productos-relacionados .relacionado { flex: 0 0 auto; display: flex; flex-direction: column; text-align: center; cursor: pointer; min-width: 180px; font-size: 1rem; }
-.productos-relacionados .relacionado img { width: 180px; height: auto; border-radius: 12px; object-fit: cover; transition: transform 0.3s ease; }
-.productos-relacionados .relacionado img:hover { transform: scale(1.05); }
-
-.datos-flotantes { display: none; }
-@media (max-width: 768px) {
-  .producto-detalle { flex-direction: column; align-items: center; }
-  .info-izquierda, .info-derecha { display: none; }
-  .imagen-centro { width: 100%; max-width: 400px; position: relative; }
-  .datos-flotantes { display: flex; position: absolute; top: 10px; right: -20px; padding: 0.5rem 1rem; border-radius: 8px; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; width: 25%; }
-  .tallas { width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-  .talla { flex: 1; text-align: center; padding: 0.8rem; font-size: 1rem; border: none; background: transparent; }
-  .talla.selected { font-weight: 700; text-decoration: underline; }
-  .btn-carrito { width: 100%; margin-top: 1rem; padding: 1rem; font-size: 1rem; border-radius: 8px; }
+/* Info producto */
+.info-izquierda h2 { 
+  font-family: 'Playfair Display', serif; 
+  font-size: 1.5rem; 
+  margin-bottom: 0.5rem; 
+}
+#producto-descripcion { 
+  white-space: normal; 
+  text-align: left; 
+  line-height: 1.5; 
+  font-family: 'Inter', sans-serif;
 }
 
-#cantidad { margin-top: 0.5rem; margin-bottom: 1rem; width: 60px; padding: 0.3rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; }
+.precio { 
+  font-weight: 700; 
+  font-size: 1.1rem; 
+  font-family: 'Inter', sans-serif;
+}
+.colores, .tallas { 
+  display: flex; 
+  gap: 0.5rem; 
+  flex-wrap: wrap; 
+  margin-bottom: 0.5rem; 
+  font-family: 'Inter', sans-serif;
+}
+
+/* Botones */
+.color, .talla { 
+  cursor: pointer; 
+  border: none;  
+  padding: 8px 14px; 
+  font-weight: bold; 
+  border-radius: 5px; 
+  text-align: center; 
+  transition: all 0.2s; 
+  font-family: 'Inter', sans-serif;
+}
+.color.selected, .talla.selected { 
+  background: #111; 
+  color: #fff; 
+  border: none; 
+}
+.btn-carrito { 
+  padding: 15px; 
+  background: #111; 
+  color: #fff; 
+  border: none; 
+  cursor: pointer;  
+  width: 100%; 
+  font-weight: bold; 
+  font-size: 1rem; 
+  transition: background 0.2s; 
+  font-family: 'Inter', sans-serif;
+}
+.btn-carrito:hover { background: #333; }
+
+/* Galería */
+.galeria { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+  align-items: center; 
+  font-family: 'Inter', sans-serif;
+}
+.galeria img { 
+  width: 100%; 
+  max-width: 400px; 
+  border-radius: 10px; 
+  object-fit: cover; 
+  cursor: zoom-in; 
+}
+
+/* Productos relacionados */
+.productos-relacionados { 
+  max-width: 1200px; 
+  margin: 2rem auto; 
+  padding: 0 1rem; 
+  font-family: 'Inter', sans-serif;
+}
+.productos-relacionados h3 { 
+  font-family: 'Playfair Display', serif; 
+  margin-bottom: 1rem; 
+  font-size: 1.1rem; 
+}
+#relacionados-container { 
+  overflow-x: auto; 
+  padding-bottom: 1rem; 
+  scroll-behavior: smooth; 
+  font-family: 'Inter', sans-serif;
+}
+
+.info-adicional a {
+  color: #111;       /* negro oscuro */
+  text-decoration: none; 
+  font-weight: 500;  
+  font-size: 0.75rem; /* más pequeña */
+}
+
+.info-adicional a:hover {
+  color: #555;       /* cambio de color al pasar el cursor */
+}
+
+#relacionados { 
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: nowrap; 
+  font-family: 'Inter', sans-serif;
+}
+.productos-relacionados .relacionado { 
+  flex: 0 0 auto; 
+  display: flex; 
+  flex-direction: column; 
+  text-align: center; 
+  cursor: pointer; 
+  min-width: 180px; 
+  font-size: 1rem; 
+  font-family: 'Inter', sans-serif;
+}
+.productos-relacionados .relacionado img { 
+  width: 280px; 
+  height: auto; 
+  border-radius: 12px; 
+  object-fit: cover; 
+  transition: transform 0.3s ease; 
+}
+.productos-relacionados .relacionado img:hover { transform: scale(1.05); }
+
+/* Vista móvil */
+.datos-flotantes { display: none; font-family: 'Inter', sans-serif; }
+@media (max-width: 768px) {
+  .producto-detalle { flex-direction: column; align-items: center; padding: 1rem; font-family: 'Inter', sans-serif; }
+  .info-izquierda, .info-derecha { display: none; }
+  .imagen-centro { width: 100%; max-width: 400px; position: relative; font-family: 'Inter', sans-serif; }
+  .datos-flotantes { display: flex; position: absolute; top: 10px; right: 0; padding: 0.5rem 1rem; border-radius: 8px; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; width: 90%; font-family: 'Inter', sans-serif; }
+  .tallas { width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; font-family: 'Inter', sans-serif; }
+  .talla { flex: 1; text-align: center; padding: 0.8rem; font-size: 1rem; font-family: 'Inter', sans-serif; }
+  .talla.selected { font-weight: 700; text-decoration: underline; }
+  .btn-carrito { width: 100%; margin-top: 1rem; padding: 1rem; font-size: 1rem; border-radius: 8px; font-family: 'Inter', sans-serif; }
+}
+
+/* Cantidad */
+#cantidad { margin-top: 0.5rem; margin-bottom: 1rem; width: 60px; padding: 0.3rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; font-family: 'Inter', sans-serif; }
 
 /* Pantalla completa de imagen */
-#fullscreen-img { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgb(255, 255, 255); z-index:9999; justify-content:center; align-items:center; }
+#fullscreen-img { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background-color:#fff; z-index:9999; justify-content:center; align-items:center; font-family: 'Inter', sans-serif; }
 #fullscreen-img img { max-width:100%; max-height:100%; object-fit:contain; }
-#close-fullscreen { position:absolute; top:20px; right:20px; font-size:2rem; color:rgb(0, 0, 0); cursor:pointer; font-weight:bold; }
+#close-fullscreen { position:absolute; top:20px; right:20px; font-size:2rem; color:#000; cursor:pointer; font-weight:bold; }
 
 /* Toast notificación */
 #toast {
@@ -87,14 +255,69 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
 }
-#toast.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
+#toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 #toast svg { width: 20px; height: 20px; fill: #4CAF50; }
 #toast.error svg { fill: #f44336; }
+
+/* Footer flotante móvil */
+.footer-flotante { display: none; box-sizing: border-box; max-width: 100%; font-family: 'Inter', sans-serif; }
+
+@media (max-width: 768px) {
+  .footer-flotante {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: #fff;
+ 
+    z-index: 999;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-flotante .tallas-flotante {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-flotante input[type="number"] {
+    width: 60px;
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-flotante .btn-carrito {
+    background: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-flotante .btn-carrito:hover { 
+    background: #333; 
+  }
+}
+
+
+
 </style>
 </head>
 <body>
@@ -124,15 +347,35 @@ header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom
       <p class="precio" id="precio-flotante"></p>
       <div><strong>Color:</strong><div class="colores" id="colores-flotante"></div></div>
     </div>
-    <div class="tallas" id="producto-tallas"></div>
-    <input type="number" id="cantidad" value="1" min="1" style="margin-top:0.5rem;width:60px;">
-    <button class="btn-carrito" id="btn-carrito">Añadir al carrito</button>
+        
   </div>
 
-  <div class="info-derecha">
-    <p class="precio" id="producto-precio"></p>
-    <div><strong>Color:</strong><div class="colores" id="producto-colores"></div></div>
+<div class="info-derecha">
+  <p class="precio" id="producto-precio"></p>
+  <div><strong>Color:</strong><div class="colores" id="producto-colores"></div></div>
+    <input type="number" id="cantidad" value="1" min="1">
+
+  <div class="tallas" id="producto-tallas"></div>
+    <p>Comparar métodos de envío</p>
+    <p>Enviar a , Nicaragua. <a href="#" style="color: rgb(63, 63, 63); text-decoration: none;">Editar</a></p>
+  <button class="btn-carrito" id="btn-carrito-pc">AÑADIR A LA CESTA</button>
+  <!-- Información adicional -->
+  <div class="info-adicional" style=" font-family:'Inter',sans-serif;">
+  
+    <p><a href="index.html" style="color: black; text-decoration: none;">ENVÍOS Y DEVOLUCIONES</a></p>
+    <p><a href="#" style="color: black; text-decoration: none;">GUÍA DE TALLAS</a></p>
+    <p><a href="#" style="color: black; text-decoration: none;">VER LOOKS</a></p>
+    <p><a href="#" style="color: black; text-decoration: none;">CONTACTA CON NOSOTROS</a></p>
   </div>
+</div>
+</div>
+
+<!-- Footer flotante móvil -->
+<div class="footer-flotante" id="footer-flotante">
+    <input type="number" id="cantidad-flotante" value="1" min="1">
+  <div class="tallas-flotante" id="tallas-flotante"></div>
+  <button class="btn-carrito" id="btn-carrito-movil">AÑADIR A LA CESTA</button>
+</div>
 </section>
 
 <section class="productos-relacionados">
@@ -202,7 +445,7 @@ const productos = {
     imagen3 : '16.jpeg',
     colores: ['blanco'], 
     tallas: ['S','M','L','XL'],
-    relacionados: ['overzide'] 
+    relacionados: ['overzide','pantalon-cargo'] 
   },
   'gorr': { 
     nombre: 'Night Strike', 
@@ -220,6 +463,7 @@ const slug = urlParams.get('producto');
 const producto = productos[slug];
 const coloresHex = { 'Negro': '#000000', 'Blanco': '#ffffff' };
 
+// Función para mostrar toast
 function showToast(message, type='success'){
   const toast = document.getElementById('toast');
   toast.className = type==='error'?'error':'';
@@ -231,12 +475,14 @@ function showToast(message, type='success'){
 }
 
 if(producto){
+  // Mostrar información del producto
   document.getElementById('producto-nombre').textContent = producto.nombre;
   document.getElementById('producto-descripcion').textContent = producto.descripcion;
   document.getElementById('producto-precio').textContent = 'C$' + producto.precio.toFixed();
   document.getElementById('nombre-flotante').textContent = producto.nombre;
   document.getElementById('precio-flotante').textContent = 'C$' + producto.precio.toFixed();
 
+  // Galería de imágenes
   const galeria = document.getElementById('galeria');
   [producto.imagen, producto.imagen2, producto.imagen3].forEach(src => {
     if(src){
@@ -246,6 +492,7 @@ if(producto){
     }
   });
 
+  // Colores
   const coloresDiv = document.getElementById('producto-colores');
   const coloresFlot = document.getElementById('colores-flotante');
   producto.colores.forEach(c => {
@@ -262,6 +509,7 @@ if(producto){
     });
   });
 
+  // Tallas
   const tallasDiv = document.getElementById('producto-tallas');
   producto.tallas.forEach(t => {
     const tallaElem = document.createElement('div');
@@ -274,6 +522,7 @@ if(producto){
     tallasDiv.appendChild(tallaElem);
   });
 
+  // Pantalla completa de imagen
   document.querySelectorAll('.galeria img').forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
@@ -298,7 +547,8 @@ if(producto){
     }
   });
 
-  document.getElementById('btn-carrito').onclick = () => {
+  // Botón agregar al carrito (funciona para PC y Móvil)
+  function agregarAlCarrito(){
     const colorSel = document.querySelector('.color.selected');
     const tallaSel = document.querySelector('.talla.selected');
     const cantidadSel = parseInt(document.getElementById('cantidad').value);
@@ -320,30 +570,105 @@ if(producto){
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     showToast('Producto agregado al carrito', 'success');
-  };
+  }
 
+  document.getElementById('btn-carrito-pc').addEventListener('click', agregarAlCarrito);
+
+  // Productos relacionados
   const relDiv = document.getElementById('relacionados');
   producto.relacionados.forEach(r => {
     const relProd = productos[r];
     if(relProd){
       const div = document.createElement('div');
       div.className = 'relacionado';
-      div.innerHTML = `<img src="${relProd.imagen}" alt="${relProd.nombre}"></span>`;
+      div.innerHTML = `<img src="${relProd.imagen}" alt="${relProd.nombre}">`;
       div.addEventListener('click', ()=>{ window.location.href = 'producto.html?producto='+r; });
       relDiv.appendChild(div);
     }
   });
 }
 
+// Actualizar contador del carrito
 function updateCartCount(){
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   document.getElementById('cart-count').textContent = cart.length;
 }
 updateCartCount();
 
+// Toggle menú
 document.getElementById('menu-toggle').addEventListener('click', () => {
   document.getElementById('menu').classList.toggle('show');
 });
+
+// Clonar tallas del producto al footer flotante
+const tallasOriginales = document.getElementById('producto-tallas');
+const tallasFlotante = document.getElementById('tallas-flotante');
+if(tallasOriginales){
+  Array.from(tallasOriginales.children).forEach(talla=>{
+    const clone = talla.cloneNode(true);
+    clone.addEventListener('click', ()=>{
+      document.querySelectorAll('.talla').forEach(el=>el.classList.remove('selected'));
+      clone.classList.add('selected');
+    });
+    tallasFlotante.appendChild(clone);
+  });
+}
+
+// Sincronizar cantidad PC <-> Móvil
+const cantidadPC = document.getElementById('cantidad');
+const cantidadMovil = document.getElementById('cantidad-flotante');
+cantidadMovil.addEventListener('input', ()=>{ cantidadPC.value = cantidadMovil.value; });
+cantidadPC.addEventListener('input', ()=>{ cantidadMovil.value = cantidadPC.value; });
+
+// Botón agregar al carrito móvil
+document.getElementById('btn-carrito-movil').addEventListener('click', ()=>{
+  const colorSel = document.querySelector('.color.selected');
+  const tallaSel = document.querySelector('.talla.selected');
+  const cantidadSel = parseInt(document.getElementById('cantidad-flotante').value);
+
+  if(!colorSel || !tallaSel){ 
+    const toast = document.getElementById('toast');
+    toast.className = 'error';
+    toast.innerHTML = 'Seleccione color y talla';
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),3000);
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push({
+    name: producto.nombre,
+    price: producto.precio,
+    color: colorSel.title,
+    talla: tallaSel.textContent,
+    cantidad: cantidadSel,
+    imagen: producto.imagen
+  });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  document.getElementById('cart-count').textContent = cart.length;
+  const toast = document.getElementById('toast');
+  toast.className = '';
+  toast.innerHTML = 'Producto agregado al carrito';
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3000);
+});
+// Ocultar footer flotante al llegar al final de la página (solo móvil)
+window.addEventListener('scroll', () => {
+  const footerFlotante = document.getElementById('footer-flotante');
+  if (window.innerWidth <= 768) { // Solo para móviles
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const bodyHeight = document.body.offsetHeight;
+
+    // Si estamos a 50px del final de la página
+    if (scrollTop + windowHeight >= bodyHeight - 50) {
+      footerFlotante.style.display = 'none';
+    } else {
+      footerFlotante.style.display = 'flex';
+    }
+  }
+});
+
 </script>
 
 </body>
