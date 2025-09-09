@@ -15,6 +15,8 @@
 
   a { color: #111; text-decoration: none; transition: color 0.3s; }
   a:hover { color: #555; }
+
+  /* Splash */
   #splash {
     position: fixed; top:0; left:0; width:100vw; height:100vh;
     background:#ffffff; display:flex; justify-content:center; align-items:center;
@@ -40,97 +42,24 @@
     z-index:9998; 
     padding:1rem;
   }
-
-  #coming-main-text {
-    font-size:2rem;
-    font-weight:400;
-    margin-bottom:0.5rem;
-    font-family:'Playfair Display', serif;
-  }
-
-  #coming-sub-text {
-    font-size:1rem;
-    font-weight:300;
-    margin-bottom:0.5rem;
-    font-family:'Inter', sans-serif;
-    max-width:320px;
-    line-height:1.4;
-  }
-
-  #coming-counter {
-    font-size:1rem;
-    font-weight:400;
-    margin-bottom:1.5rem;
-    font-family:'Playfair Display', serif;
-  }
+  #coming-main-text { font-size:2rem; font-weight:400; margin-bottom:0.5rem; font-family:'Playfair Display', serif; }
+  #coming-sub-text { font-size:1rem; font-weight:300; margin-bottom:0.5rem; font-family:'Inter', sans-serif; max-width:320px; line-height:1.4; }
+  #coming-counter { font-size:1rem; font-weight:400; margin-bottom:1.5rem; font-family:'Playfair Display', serif; }
 
   /* Logo 3D */
-  .logo-container {
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-    margin-bottom: 2rem;
-  }
-  .logo {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    animation: spin 5s linear infinite;
-    position: relative;
-  }
-  .logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: absolute;
-    top:0; left:0;
-    filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.5));
-  }
-  @keyframes spin {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-  }
+  .logo-container { width: 200px; height: 200px; perspective: 1000px; margin-bottom: 2rem; }
+  .logo { width: 100%; height: 100%; transform-style: preserve-3d; animation: spin 5s linear infinite; position: relative; }
+  .logo img { width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.5)); }
+  @keyframes spin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
 
-  /* Formulario correo mejorado */
-  #email-form {
-    display:flex; flex-direction:column; align-items:center; gap:0.5rem; margin-top:1rem; max-width:400px; width:100%;
-  }
-  #email-form .flex-row {
-    display:flex; width:100%; gap:0.5rem;
-  }
-  #email-form input[type="email"] {
-    flex:1;
-    padding:0.5rem 1rem;
-    border-radius:5px;
-    border:1px solid #fff;
-    background:transparent;
-    color:#fff;
-    caret-color:#fff;
-    transition: all 0.3s ease;
-  }
-  #email-form input[type="email"]:hover, 
-  #email-form input[type="email"]:focus {
-    background: rgba(255, 237, 237, 0.1);
-    border-color:#fff;
-    outline:none;
-  }
-  #email-form button {
-    padding:0.5rem 1rem;
-    border-radius:5px;
-    border:1px solid #fff;
-    background:#fff;
-    color:#000;
-    cursor:pointer;
-    transition: all 0.3s ease;
-  }
-  #email-form button:hover {
-    background:#000;
-    color:#fff;
-    border:1px solid #fff;
-  }
-  #email-form label {
-    font-size:0.75rem; color:#fff; line-height:1.2;
-  }
+  /* Formulario correo */
+  #email-form { display:flex; flex-direction:column; align-items:center; gap:0.5rem; margin-top:1rem; max-width:400px; width:100%; }
+  #email-form .flex-row { display:flex; width:100%; gap:0.5rem; }
+  #email-form input[type="email"] { flex:1; padding:0.5rem 1rem; border-radius:5px; border:1px solid #fff; background:transparent; color:#fff; caret-color:#fff; transition: all 0.3s ease; }
+  #email-form input[type="email"]:hover, #email-form input[type="email"]:focus { background: rgba(255, 237, 237, 0.1); border-color:#fff; outline:none; }
+  #email-form button { padding:0.5rem 1rem; border-radius:5px; border:1px solid #fff; background:#fff; color:#000; cursor:pointer; transition: all 0.3s ease; }
+  #email-form button:hover { background:#000; color:#fff; border:1px solid #fff; }
+  #email-form label { font-size:0.75rem; color:#fff; line-height:1.2; }
   #email-form .checkbox-wrapper { display:flex; align-items:flex-start; gap:0.5rem; width:100%; }
 
   /* Toast */
@@ -149,10 +78,7 @@
     transition: all 0.4s ease;
     z-index: 10000;
   }
-  .toast.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .toast.show { opacity: 1; transform: translateY(0); }
   .toast.error { background: #b91c1c; }
   .toast.success { background: #16a34a; }
 
@@ -163,7 +89,6 @@
   .cesta { text-align:right; }
   .logo-container-header { flex:1; text-align:center; }
   .logo-header { height:50px; object-fit:contain; }
-
   .menu { position:absolute; top:70px; left:0; right:0; background:#fff; flex-direction:column; gap:1rem; padding:1rem 2rem; display:none; border-bottom:1px solid #eee; z-index:99; }
   .menu.show { display:flex; }
   .menu a { text-decoration:none; color:#111; font-weight:500; transition:color 0.2s; }
@@ -171,80 +96,33 @@
 
   /* Productos */
   .productos { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2rem; padding:3rem 2rem 2rem 2rem; max-width:1200px; margin:auto; }
-  .producto { border-radius:10px; overflow:hidden; background:#f8f8f8; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; }
+  .producto { border-radius:10px; overflow:hidden; background:#f8f8f8; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative; border: 1px solid #ddd; }
   .producto:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
   .producto img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
   .producto-info { padding:1rem; }
   .producto-info .precio { margin-bottom:0.8rem; color:#111; font-weight:600; font-size:1rem; }
-/* Productos */
-.producto {
-  border: 1px solid #ccc; /* borde gris claro */
-  border-radius: 12px;     /* esquinas redondeadas */
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
 
-.producto:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* sombra suave al pasar el mouse */
-}
+  /* Productos agotados */
+  .producto[data-agotado="true"] { cursor:not-allowed; }
+  .producto[data-agotado="true"]::after {
+    content:"AGOTADO";
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    font-size:1.5rem;
+    font-weight:700;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-transform:uppercase;
+    pointer-events:none;
+  }
 
-/* Info producto */
-.producto-info {
-  border-top: 1px solid #eee; /* separa la info del producto de la imagen */
-  padding: 1rem;
-  border-radius: 0 0 12px 12px; /* esquinas inferiores redondeadas */
-}
-
-/* Botones */
-#email-form button,
-.btn-carrito {
-  border: 1px solid #000;  /* borde negro */
-  border-radius: 8px;       /* esquinas redondeadas */
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#email-form button:hover,
-.btn-carrito:hover {
-  background: #000;
-  color: #fff;
-}
-.banner-origen {
-  text-align: center;
-  padding: 2rem 1rem;
-  background-color: #fff;
-}
-
-.banner-origen h1 {
-  font-family: 'Great Vibes', cursive; /* Fuente tipo carta */
-  font-size: 3rem;
-  color: #000;
-}
-
-.banner-origen p {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: #555;
-  margin-top: 0.5rem;
-}
-
-
-/* Formulario email */
-#email-form input[type="email"] {
-  border: 1px solid #ffffff;  /* borde negro */
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-#email-form input[type="email"]:hover,
-#email-form input[type="email"]:focus {
-  border-color: #555;
-}
+  /* Banner */
+  .banner-origen { text-align: center; padding: 2rem 1rem; background-color: #fff; }
+  .banner-origen h1 { font-family: 'Great Vibes', cursive; font-size: 3rem; color: #000; }
+  .banner-origen p { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #555; margin-top: 0.5rem; }
 
   /* Footer */
   footer { padding:2rem; text-align:center; font-size:0.8rem; color:#555; border-top:1px solid #eee; margin-top:3rem; }
@@ -304,35 +182,35 @@
       <a href="cesta.html">Cesta</a>
     </nav>
   </header>
-<!-- Banner debajo del header -->
-<div class="banner-origen">
-  <h1>ORIGEN</h1>
-  <p>-Stock limitado-</p>
-</div>
 
+  <!-- Banner debajo del header -->
+  <div class="banner-origen">
+    <h1>ORIGEN</h1>
+    <p>-Stock limitado-</p>
+  </div>
 
   <section class="productos">
-    <div class="producto" onclick="viewProduct('camiseta-oversize')">
+    <div class="producto" data-slug="camiseta-oversize"data-agotado="" onclick="viewProduct(this)">
       <img src="5.png" alt="Camiseta Oversize">
       <div class="producto-info"><p class="precio">C$350</p></div>
     </div>
-    <div class="producto" onclick="viewProduct('gorr')">
-      <img src="17.png" alt="gorr">
+    <div class="producto" data-slug="gorr" data-agotado="" onclick="viewProduct(this)">
+      <img src="17.png" alt="Gorr">
       <div class="producto-info"><p class="precio">C$550</p></div>
     </div>
-    <div class="producto" onclick="viewProduct('pantalon-cargo')">
+    <div class="producto" data-slug="pantalon-cargo"data-agotado="" onclick="viewProduct(this)">
       <img src="1.png" alt="Pantalón Cargo">
       <div class="producto-info"><p class="precio">C$220</p></div>
     </div>
-    <div class="producto" onclick="viewProduct('overzide')">
-      <img src="9.png" alt="overzide">
+    <div class="producto" data-slug="overzide"data-agotado="" onclick="viewProduct(this)">
+      <img src="9.png" alt="Overzide">
       <div class="producto-info"><p class="precio">C$550</p></div>
     </div>
-    <div class="producto" onclick="viewProduct('vogue')">
-      <img src="14.jpeg" alt="vogue">
+    <div class="producto" data-slug="vogue"data-agotado="" onclick="viewProduct(this)">
+      <img src="14.jpeg" alt="Vogue">
       <div class="producto-info"><p class="precio">C$550</p></div>
     </div>
-    <div class="producto" onclick="viewProduct('sudadera-unisex')">
+    <div class="producto" data-slug="sudadera-unisex"data-agotado="" onclick="viewProduct(this)">
       <img src="013.png" alt="Sudadera Unisex">
       <div class="producto-info"><p class="precio">C$950</p></div>
     </div>
@@ -347,7 +225,7 @@
 </div>
 
 <script>
-const launchDate = new Date(2025,8,19,10,0,0); // 19 de septiembre 2025, 10:00am
+const launchDate = new Date(2025,8,19,10,0,0); // 19 septiembre 2025, 10:00am
 
 // Splash y Coming Soon
 window.addEventListener('load', () => {
@@ -355,7 +233,6 @@ window.addEventListener('load', () => {
   const coming = document.getElementById('coming-soon');
   const main = document.getElementById('main-content');
 
-  // Ocultar el main desde el inicio
   main.style.display = 'none';
 
   setTimeout(() => {
@@ -365,7 +242,6 @@ window.addEventListener('load', () => {
 
       const now = new Date();
       if(now < launchDate){
-        // Mostrar Coming Soon hasta el día del lanzamiento
         coming.style.display='flex';
         const timer = setInterval(()=>{
           const now = new Date();
@@ -373,16 +249,16 @@ window.addEventListener('load', () => {
             clearInterval(timer);
             coming.style.display='none';
             main.style.display='block';
+            checkAllSoldOut();
           }
         },1000);
       } else {
-        // Si ya pasó la fecha, mostrar directamente el sitio principal
         main.style.display='block';
+        checkAllSoldOut();
       }
     },1000);
   },2000);
 
-  // Ocultar formulario si ya se registró
   if(localStorage.getItem('vgc_registered')){
     const emailForm = document.getElementById('email-form');
     if(emailForm) emailForm.style.display = 'none';
@@ -400,9 +276,18 @@ function showToast(message, type="success"){
   audio.play().catch(e=>{});
 }
 
-// Funciones principales
-function viewProduct(slug){ window.location.href=`producto.html?producto=${slug}`; }
-document.getElementById('menu-toggle').addEventListener('click',()=>{document.getElementById('menu').classList.toggle('show');});
+// Función productos
+function viewProduct(elem){
+  if(elem.dataset.agotado === "true"){
+    showToast("Producto agotado", "error");
+    return;
+  }
+  const slug = elem.dataset.slug;
+  window.location.href=`producto.html?producto=${slug}`;
+}
+
+// Toggle menú
+document.getElementById('menu-toggle').addEventListener('click', ()=>{ document.getElementById('menu').classList.toggle('show'); });
 
 // Formulario registro correo
 document.getElementById('submit-email').addEventListener('click', ()=>{
@@ -425,10 +310,14 @@ function updateCartCount(){
 }
 updateCartCount();
 
-// Toggle menú
-document.getElementById('menu-toggle').addEventListener('click', () => {
-  document.getElementById('menu').classList.toggle('show');
-});
+// ✅ Verificar si todos los productos están agotados
+function checkAllSoldOut(){
+  const productos = document.querySelectorAll('.producto');
+  const agotados = Array.from(productos).every(p => p.dataset.agotado === "true");
+  if(agotados){
+    window.location.href = "agotado.html";
+  }
+}
 </script>
 
 </body>
